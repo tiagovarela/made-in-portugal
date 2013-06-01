@@ -5,6 +5,7 @@ ActiveAdmin.register Startup do
     column :tag_1
     column :tag_2
     column :foundation_date
+    column :city
     column :url
     
     actions
@@ -15,9 +16,10 @@ ActiveAdmin.register Startup do
       f.input :name
       f.input :tag_1
       f.input :tag_2
-      f.input :foundation_date, :as => :select, :collection => (2000..2013).to_a
-      f.input :founders, :as => :check_boxes
+      f.input :foundation_date, :as => :select, :collection => Startup::FOUNDATION_DATES
+      f.input :city, :as => :select, :collection => Startup::CITIES
       f.input :url
+      f.input :founders, :as => :check_boxes
       f.input :description
       f.input :twitter_username
       f.input :facebook_url
@@ -26,8 +28,8 @@ ActiveAdmin.register Startup do
       f.input :hiring_url
       f.input :address
       f.input :logo_url
-      f.input :dimension, :as => :select, :collection => ["1-4", "5-10", "11-20", "21-50", "50+"]
-      f.input :funding_amount, :as => :select, :collection => ["<49", "50-149", "150-299", "300+"]
+      f.input :dimension, :as => :select, :collection => Startup::DIMENSIONS
+      f.input :funding_amount, :as => :select, :collection => Startup::FUNDING_AMOUNTS
       f.input :is_dead
 
       f.actions
