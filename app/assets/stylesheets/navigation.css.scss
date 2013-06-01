@@ -4,6 +4,7 @@
 	list-style-type: none;
 	 -webkit-padding-start: 0px;
 	li {
+		@include openSans;
 		float: left;
 		margin-right: 10px;
 		a { 
@@ -17,7 +18,7 @@
 		&.label {
 			font-style: italic;
 			font-size: 12px;
-			line-height: 30px;
+			line-height: 36px;
 			margin-right: 20px;
 			width: 50px;
 		}
