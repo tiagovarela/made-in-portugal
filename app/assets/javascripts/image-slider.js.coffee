@@ -1,7 +1,7 @@
 class ImageSlider
 	selectedIndex = 0
 	el = '.sidebar'
-	path = 'assets/'
+	path = '/assets/'
 	images = [ 'opo2.png', 'lisbon.jpg']
 
 	buildUrl: (index) ->
