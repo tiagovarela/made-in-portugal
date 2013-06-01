@@ -1,0 +1,16 @@
+.startups {
+	overflow: hidden;
+	margin: 0;
+	list-style-type: none;
+	 -webkit-padding-start: 0px;
+	 li {
+	 	float: left;
+	 	margin: 10px;
+	 	border: 2px solid #eee;
+	 	width: 190px;
+	 	height: 130px;
+	 	&:nth-child(4n + 1) { margin-left: 0; }
+	 	&:nth-child(4n) { margin-right: 0; }
+
+	 }
+}

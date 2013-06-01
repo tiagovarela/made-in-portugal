@@ -1,0 +1,130 @@
+@import url(http://fonts.googleapis.com/css?family=Gentium+Basic:400,400italic);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:700italic,800italic,700,800);
+
+@mixin gentium { font-family: 'Gentium Basic', serif; }
+@mixin openSans { font-family: 'Open Sans', sans-serif; }
+
+body { color: #5a5a5a; }
+
+h1, h2, h3, h4, h5, h6 {
+	@include gentium;
+	line-height: 120%;
+}
+
+p, li {
+	@include openSans;
+	line-height: 150%;
+}
+
+$weight: normal;
+$line-height: 1.65;
+$font-size: 112.5; // percentage value (16 * 112.5% = 18px)
+$font-base: 16 * ($font-size/100); // converts our percentage to a pixel value
+$font-family: serif;
+$font-family-sans: sans-serif;
+$font-properties: $weight, $line-height, $font-size, $font-family;
+
+//the serif boolean var can be redeclared from another stylesheet. However
+//the var must be placed after your @import "typeplate.scss";
+$serif-boolean: true !default;
+
+@mixin base-type($weight, $line-height, $font-size, $font-family...) {
+	@if $serif-boolean {
+		font: $weight #{$font-size}%/#{$line-height} $font-family;
+	}@else {
+		font: $weight #{$font-size}%/#{$line-height} $font-family-sans;
+	}
+}
+
+html {
+	@include base-type($font-properties...);
+}
+
+$measure: $font-base * $line-height;
+
+// Modular Scale Values
+// http://typecast.com/blog/contrast-through-scale
+$tera: 117;		//	117	= 18 × 6.5
+$giga: 90;		//	90  = 18 × 5
+$mega: 72;		//	72  = 18 × 4
+$alpha: 60;		//	60  = 18 × 3.3333
+$beta: 48;		//	48  = 18 × 2.6667
+$gamma: 36;		//	36  = 18 × 2
+$delta: 24;		//	24  = 18 × 1.3333
+$epsilon: 21;	//	21  = 18 × 1.1667
+$zeta: 18; 		//	18  = 18 × 1
+
+// typscale unit
+$type-scale-unit-value: rem;
+
+// typographic scale
+@mixin modular-scale($scale, $base, $value, $measure:"") {
+	font-size: $scale#{px};
+	font-size: modular-scale($scale, $base, $value);
+	@if $measure != "" {
+		margin-bottom: measure-margin($scale, $measure, $value);
+	}
+}
+
+// modular scale function to return em equivalent
+@function modular-scale($scale, $base, $value) {
+	// divide a given font-size by base font-size & return a relative em value
+	@return ($scale/$base)#{$value};
+}
+
+// divide 1 unit of measure by given font-size & return a relative em value
+@function measure-margin($scale, $measure, $value) {
+	@return ($measure/$scale)#{$value};
+}
+
+// styles for all headings, in the style of @csswizardry
+%hN {
+	// voodoo to enable ligatures and kerning
+	text-rendering: optimizeLegibility;
+	// this fixes huge spaces when a heading wraps onto two lines
+	line-height: 1;
+	margin-top: 0;
+}
+
+// make a multi-dimensional array, where:
+// the first value is the name of the class
+// and the second value is the variable for the size
+$sizes: tera $tera, giga $giga, mega $mega, alpha $alpha, beta $beta, gamma $gamma, delta $delta, epsilon $epsilon, zeta $zeta;
+
+// associate h1-h6 tags with their appropriate greek heading
+@each $size in $sizes {
+	.#{nth($size, 1)} {
+		@include modular-scale(nth($size, 2), $font-base, '#{$type-scale-unit-value}', $measure);
+	}
+}
+
+// associate h1-h6 tags with their appropriate greek heading
+h1 {
+	@extend .alpha;
+	@extend %hN;
+}
+
+h2 {
+	@extend .beta;
+	@extend %hN;
+}
+
+h3 {
+	@extend .gamma;
+	@extend %hN;
+}
+
+h4 {
+	@extend .delta;
+	@extend %hN;
+}
+
+h5 {
+	@extend .epsilon;
+	@extend %hN;
+}
+
+h6 {
+	@extend .zeta;
+	@extend %hN;
+}

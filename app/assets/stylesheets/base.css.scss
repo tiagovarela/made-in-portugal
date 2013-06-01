@@ -1,0 +1,40 @@
+@import "mixins";
+@import "variables";
+@import "font-awesome";
+@import "typography";
+
+// NEEDS THIS TO HAVE SIBLINGS TO BE ALSO 100%
+body, html {
+    height: 100%; 
+}
+
+.sidebar {
+	width: $sidebar-width;
+	height: 100%;
+	float: left;
+	background: image-url("opo2.png") no-repeat; 
+	position: relative;
+	border-right: 1px solid #000;
+
+	#logo {
+		width: 164px;
+		height: 109px;
+		margin: $main-padding auto;
+		background: image-url("logo1.png") no-repeat
+	}
+  	
+}
+.content {
+	display: block;
+	height: 100%;
+	margin-left: $sidebar-width;
+	.content-wrapper { 
+		padding: $main-padding;
+		width: 1136 - $sidebar-width;
+	}
+}
+
+
+
+
+
