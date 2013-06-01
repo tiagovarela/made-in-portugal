@@ -13,3 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+$(function() {
+    $.ImageSlider.changeTo(1);
+});

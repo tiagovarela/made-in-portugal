@@ -1,6 +1,5 @@
-$(document).ready(function() {
-  // $('.details').hide();
-  $('.startups li').mouseenter(function() {
+$(function() {
+	$('.startups li').mouseenter(function() {
     $(this).find('.image').slideToggle();
     console.log('mouse enter');
   }).mouseleave( function() {
