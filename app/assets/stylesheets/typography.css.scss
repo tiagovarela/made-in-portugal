@@ -1,24 +1,29 @@
 @import url(http://fonts.googleapis.com/css?family=Gentium+Basic:400,400italic);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:700italic,800italic,700,800);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic);
 
 @mixin gentium { font-family: 'Gentium Basic', serif; }
-@mixin openSans { font-family: 'Open Sans', sans-serif; }
+@mixin openSans { font-family: 'Open Sans', sans-serif; font-weight: 700;}
+@mixin condensed { font-family: 'Open Sans Condensed', sans-serif; }
 
-body { color: #5a5a5a; }
 
+body { color: #5a5a5a; @include openSans; }
+
+.sans { @include condensed; font-weight: 300; }
 h1, h2, h3, h4, h5, h6 {
 	@include gentium;
 	line-height: 120%;
 }
 
 p, li {
-	@include openSans;
+	@include condensed;
 	line-height: 150%;
+	font-weight: 300;
 }
 
 $weight: normal;
 $line-height: 1.65;
-$font-size: 112.5; // percentage value (16 * 112.5% = 18px)
+$font-size: 137.5; // percentage value (16 * 112.5% = 18px)
 $font-base: 16 * ($font-size/100); // converts our percentage to a pixel value
 $font-family: serif;
 $font-family-sans: sans-serif;
