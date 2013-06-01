@@ -21,12 +21,15 @@ group :assets do
 end
 
 gem 'jquery-rails'
-#gem 'compass', '>= 0.13.alpha.0'
-gem 'bourbon'
-#gem 'compass-rails'
-#gem 'susy'
+
 gem 'normalize-rails'
 gem "font-awesome-rails"
+
+gem "jquery-rails", "2.3.0"
+
+gem 'activeadmin'
+gem "meta_search",    '>= 1.1.0.pre'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
