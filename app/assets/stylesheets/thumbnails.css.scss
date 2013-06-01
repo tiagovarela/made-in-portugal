@@ -19,8 +19,11 @@
 	 		.image, .details {
 	 			width: $thumbnail-width;
 	 			height: $thumbnail-height;
+	 			background: #eee;
 	 		}
 	 		.image {
+	 			background: white;
+
 	 			img {
 	 				height: 70px;
 					width: 130px;
